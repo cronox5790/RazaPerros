@@ -1,0 +1,27 @@
+﻿@model RazasPerros.Models.ViewModels.RazasPaisesViewModel
+@{
+    Layout = "_Layout";
+}
+
+<section class="nav">
+    <h3>Razas por país</h3>
+    <nav>
+        <a href="/Home/">Listado Alfabético de Razas</a>
+    </nav>
+</section>
+
+<section class="list">
+    @foreach (var item in Model.Paises)
+    {
+<h4>@item.Nombre</h4>
+                <ul>
+                    @foreach (var elemento in item.Razas)
+                    {
+    <li>
+        <a href="~/Raza/@(elemento.Nombre.Replace(" ", "-"))">
+            <img src="/imgs_perros/@(elemento.Id)_0.jpg" />
+            @elemento.Nombre
+        </a>
+    </li>}
+                </ul>}
+</section>

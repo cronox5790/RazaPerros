@@ -1,0 +1,115 @@
+﻿@model RazasPerros.Models.ViewModels.InfoPerroViewModel
+
+@{ Layout = "_Layout"; }
+
+<form method="post" asp-action="Agregar" asp-controller="Home" asp-area="Admin" enctype="multipart/form-data">
+    <div class="datosraza">
+
+        <h1>Agregar</h1>
+
+        <div class="labels">
+            <label>Id:</label>
+            <input type="number" asp-for="Raza.Id" required="required" min="0" /><br />
+
+            <label>Nombre:</label>
+            <input type="text" asp-for="Raza.Nombre" required="required" /><br />
+
+            <label>País de origen:</label>
+            <select asp-for="Raza.IdPais" asp-items="@(new SelectList(Model.Paises, "Id", "Nombre" ))" required="required">
+                <option selected="selected">Seleccione raza</option>
+            </select><br />
+
+            <label>Otros nombres:</label>
+            <input type="text"  asp-for="Raza.OtrosNombres" required="required" /><br />
+
+            <label>Peso mínimo:</label>
+            <input type="number" asp-for="Raza.PesoMin" required="required" /><br />
+
+            <label>Peso máximo:</label>
+            <input type="number" asp-for="Raza.PesoMax" required="required" /><br />
+
+            <label>Altura mínima:</label>
+            <input type="number" asp-for="Raza.AlturaMin" required="required" /><br />
+
+            <label>Altura máxima:</label>
+            <input type="number" asp-for="Raza.AlturaMax" required="required" /><br />
+
+            <label>Esperanza de vida:</label>
+            <input type="number" asp-for="Raza.EsperanzaVida" required="required" /><br />
+
+            <label>Descripción</label>
+            <textarea rows="3" cols="40" asp-for="Raza.Descripcion" required="required"></textarea><br />
+        </div>
+
+
+        <img id="imagePreview" src="~/imgs_perros/NoPhoto.jpg" alt="Vista previa de la imagen" /><br /><br />
+
+        <div class="labelimagen">
+            <label>Imagen:</label>
+            <input type="file" id="fileUpload1" accept="image/jpg" asp-for="Archivo" onchange="mostrarImagen(this)" /><br /><br />
+        </div>
+
+        <br />
+
+        <div class="estrazas">
+            <h3>Características Físicas</h3>
+
+            <label>Patas:</label>
+            <input type="text"  asp-for="Raza.Caracteristicasfisicas.Patas" required="required" /><br />
+
+            <label>Cola:</label>
+            <input type="text"  asp-for="Raza.Caracteristicasfisicas.Cola" required="required"/><br />
+
+            <label>Hocico:</label>
+            <input type="text" asp-for="Raza.Caracteristicasfisicas.Hocico" required="required"/><br />
+
+            <label>Pelo:</label>
+            <input type="text" asp-for="Raza.Caracteristicasfisicas.Pelo" required="required" /><br />
+
+            <label>Color:</label>
+            <input type="text"  asp-for="Raza.Caracteristicasfisicas.Color" required="required" /><br />
+        </div>
+
+        <div class="carrazas">
+            <h3>Estadísticas</h3>
+
+            <label>Nivel de energía:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.NivelEnergia" /><br />
+
+            <label>Facilidad de entrenamiento:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.FacilidadEntrenamiento" /><br />
+
+            <label>Ejercicio obligatorio:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.EjercicioObligatorio" /><br />
+
+            <label>Amistad de desconocidos:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.AmistadDesconocidos" /><br />
+
+            <label>Amistad de perros:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.AmistadPerros" /><br />
+
+            <label>Necesidad de cepillado:</label>
+            <input type="number" required="required" asp-for="Raza.Estadisticasraza.NecesidadCepillado" /><br />
+        </div>
+        <br />
+        <div class="botones">
+            <p id="error">@Html.ValidationSummary()</p>
+            <input type="submit" value="Agregar" id="btnAgregar" />
+            <a asp-action="Index" asp-controller="Home"><input type="button" value="Cancelar" id="btnCancelar" formnovalidate="formnovalidate" /></a>
+        </div>
+    </div>
+</form>
+
+<script>
+    function mostrarImagen(input)
+    {
+            if (input.files && input.files[0])
+            {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("imagePreview").src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+    }
+</script>

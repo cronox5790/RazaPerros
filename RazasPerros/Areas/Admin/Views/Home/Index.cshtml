@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RazasPerros.Models.Razas>
+@{ Layout = "_Layout";
+                int x = 1; }
+
+<h1>Lista de Perros</h1>
+
+<table>
+    <colgroup>
+        <col style="width:50px" />
+        <col style="width:40px" />
+        <col />
+        <col style="width:50%" />
+    </colgroup>
+    <caption>
+        <a href="~/Admin/Home/Agregar" id="b"><i class="fa fa-plus"></i> Agregar Raza</a>
+    </caption>
+    <thead>
+        <tr class="subt">
+            <th id="num">#</th>
+            <th id="raza">Raza</th>
+            <th id="acciones">Acciones</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td class="numero">@(x++)</td>
+                <td class="nombre">@item.Nombre</td>
+                <td id="acc">
+                    <a href="/Admin/Home/Editar/@(item.Id)" id="b"><i class="fa fa-edit"></i> Editar</a>
+                    <a href="javascript:eliminar(@item.Id)" id="b"><i class="fa fa-remove"></i> Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+}
+</table>
+

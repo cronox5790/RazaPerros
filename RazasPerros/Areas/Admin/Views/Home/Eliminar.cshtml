@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1>Eliminar</h1>
+<form method="post" action="~/Admin/Home/Eliminar">
+
+    <input type="hidden" name="Id" id="razaid" />
+
+</form>
+
+<script>
+    function eliminar(id)
+    {
+        if (confirm('¿Desea eliminar esta raza?'))
+        {
+            document.getElementById("razaid").value = id;
+            document.querySelector("form").submit();
+        }
+    }
+</script>
